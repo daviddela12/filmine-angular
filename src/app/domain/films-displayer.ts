@@ -1,21 +1,22 @@
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Inject, Injectable } from '@angular/core';
+import { map, Observable } from 'rxjs';
 import PDisplayFilms from '../ports/p-display-films';
+import PManageFilms from '../ports/p-manage-films';
 import { Film } from './models/film';
 
-@Injectable({
-  providedIn: 'root'
-})
-export class FilmsDisplayerComponent implements PDisplayFilms {
+@Injectable()
+export class FilmsDisplayer implements PDisplayFilms {
   
   films: Film[] = [];
-  filter: string = '';
 
-  constructor() { }
+  constructor(@Inject("PManageFilms") private _manageFilms: PManageFilms) { }
 
   askFilmsList(): Observable<void> {
-    throw new Error('Method not implemented.');
+    return this._manageFilms.getFilms().pipe(
+      map(films => {this.films = films})
+    );
   }
+
   askFilmsFiltered(filter: string, allowEmpty?: boolean | undefined): Observable<void> {
     throw new Error('Method not implemented.');
   }

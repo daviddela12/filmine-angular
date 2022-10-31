@@ -1,7 +1,7 @@
 import { Observable } from "rxjs"
 import { Film } from "../domain/models/film"
 
-export default interface IManageHeroes {
+export default interface PManageFilms {
 
     getFilms(): Observable<Film[]>
     searchFilms(term: string): Observable<Film[]>
