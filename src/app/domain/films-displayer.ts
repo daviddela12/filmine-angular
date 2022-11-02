@@ -42,7 +42,7 @@ export class FilmsDisplayer implements PDisplayFilms {
       tap(filmId => this._manageMessages.addMessage(`FilmsDisplayer.askFilmDeletion said: film updated with id=${filmId}`)),
       catchError(error => { 
         this._manageMessages.addMessage(`ERROR FilmsDisplayer.askFilmDeletion: ${error}`)
-        return of(film as Film)
+        return of({} as Film)
       }),
       map(deletedFilmId => {this.films = this.films.filter(f => f.id !== deletedFilmId)})
     )
