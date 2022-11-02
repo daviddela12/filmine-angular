@@ -1,5 +1,5 @@
 
-export default interface IDisplayMessages{
+export default interface PDisplayMessages{
     
     messages: string[]
     

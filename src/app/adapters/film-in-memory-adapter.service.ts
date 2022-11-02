@@ -1,5 +1,6 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { catchError, map, Observable } from 'rxjs';
 import { Film } from '../domain/models/film';
 import PManageFilms from '../ports/p-manage-films';
 
@@ -8,24 +9,50 @@ import PManageFilms from '../ports/p-manage-films';
 })
 export class FilmInMemoryAdapterService implements PManageFilms {
 
-  constructor() { }
+  private filmsUrl = 'api/films';
+
+  httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  };
+
+  constructor(private http: HttpClient) { }
   
   getFilms(): Observable<Film[]> {
-    throw new Error('Method not implemented.');
+    return this.http.get<Film[]>(this.filmsUrl).pipe(
+      catchError(this.handleHttpError())
+    );
   }
-  searchFilms(term: string): Observable<Film[]> {
-    throw new Error('Method not implemented.');
-  }
+
   getFilm(id: number): Observable<Film> {
-    throw new Error('Method not implemented.');
+    const url = `${this.filmsUrl}/${id}`;
+    return this.http.get<Film>(url).pipe(
+      catchError(this.handleHttpError())
+    );
   }
   addFilm(hero: Film): Observable<Film> {
-    throw new Error('Method not implemented.');
+    return this.http.post<Film>(this.filmsUrl, hero, this.httpOptions).pipe(
+      catchError(this.handleHttpError())
+    );
   }
-  updateFilm(hero: Film): Observable<Film> {
-    throw new Error('Method not implemented.');
+
+  updateFilm(film: Film): Observable<Film> {
+    return this.http.put<Film>(this.filmsUrl, film, this.httpOptions).pipe(
+      catchError(this.handleHttpError()),
+      map(_ => film)
+    );
   }
+
   deleteFilm(id: number): Observable<number> {
-    throw new Error('Method not implemented.');
+    const url = `${this.filmsUrl}/${id}`;
+    return this.http.delete<Film>(url, this.httpOptions).pipe(
+      catchError(this.handleHttpError()),
+      map(_ => id)
+    );
+  }
+
+  private handleHttpError() {
+    return (error: any): Observable<any> => {
+      throw new Error(error.body.error);
+    };
   }
 }
