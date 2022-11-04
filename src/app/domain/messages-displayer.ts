@@ -3,11 +3,11 @@ import PDisplayMessages from '../ports/p-display-messages';
 import PManageMessages from '../ports/p-manage-messages';
 
 @Injectable()
-export class MessagesDisplayerService implements PDisplayMessages {
+export class MessagesDisplayer implements PDisplayMessages {
 
   messages: string[] = [];
 
-  constructor( @Inject('IManageMessages') private _manageMessages: PManageMessages) {
+  constructor( @Inject('PManageMessages') private _manageMessages: PManageMessages) {
     this.messages = this._manageMessages.messages;
    }
  

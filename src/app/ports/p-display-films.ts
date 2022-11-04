@@ -7,6 +7,6 @@ export default interface PDisplayFilms {
     
     askFilmsList(): Observable<void>
     askFilmCreation(film: Film): Observable<void>
-    askFilmDeletion(film: Film): Observable<void>
+    askFilmDeletion(idFilm: number): Observable<void>
 
 }

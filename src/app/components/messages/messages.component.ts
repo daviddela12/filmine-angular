@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
+import PDisplayMessages from 'src/app/ports/p-display-messages';
 
 @Component({
   selector: 'app-messages',
@@ -6,9 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MessagesComponent implements OnInit {
 
-  constructor() { }
+  constructor(@Inject('PDisplayMessages') public messagesDisplayer: PDisplayMessages) { }
 
   ngOnInit(): void {
+  }
+
+  clearMessages() {
+    this.messagesDisplayer.askMessagesClear();
   }
 
 }

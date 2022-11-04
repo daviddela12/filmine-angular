@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { InMemoryDbService } from 'angular-in-memory-web-api';
-import { Film } from '../domain/models/film';
 
 @Injectable({
   providedIn: 'root'
@@ -8,17 +7,13 @@ import { Film } from '../domain/models/film';
 export class InMemoryDataService implements InMemoryDbService {
   createDb() {
     const films = [
-      { id: 1, name: 'The Lion King' },
-      { id: 2, name: 'Pocahontas' },
-      { id: 3, name: 'Beauty and the Beast' },
-      { id: 4, name: 'Aladdin' },
-      { id: 5, name: 'Toy Story' },
-      { id: 6, name: 'Dumbo' },
+      { id: 1, name: 'The Lion King', description: 'The Lion King Description' },
+      { id: 2, name: 'Pocahontas', description: 'Pocahontas Description' },
+      { id: 3, name: 'Beauty and the Beast', description: 'Beauty and the Beast Description' },
+      { id: 4, name: 'Aladdin', description: 'Aladdin Description' },
+      { id: 5, name: 'Toy Story', description: 'Toy Story Description' },
+      { id: 6, name: 'Dumbo', description: 'Dumbo Description' },
     ];
     return {films};
-  }
-
-  genId(films: Film[]): number {
-    return films.length > 0 ? Math.max(...films.map(film => film.id)) + 1 : 0;
   }
 }

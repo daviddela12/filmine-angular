@@ -15,7 +15,7 @@ export class FilmsDisplayer implements PDisplayFilms {
 
   askFilmsList(): Observable<void> {
     return this._manageFilms.getFilms().pipe(
-      tap(_ => this._manageMessages.addMessage("FilmsDisplayer.askFilmsList said: films fetched")),
+      tap(_ => this._manageMessages.addMessage("FilmsDisplayer.askFilmsList said: Films fetched")),
       catchError(error => { 
         this._manageMessages.addMessage(`ERROR FilmsDisplayer.askFilmsList: ${error}`)
         return of([])
@@ -26,7 +26,7 @@ export class FilmsDisplayer implements PDisplayFilms {
 
   askFilmCreation(film: Film): Observable<void> {
     return this._manageFilms.addFilm(film).pipe(
-      tap(film => this._manageMessages.addMessage(`FilmsDisplayer.askFilmCreation said: film created with id=${film.id}`)),
+      tap(film => this._manageMessages.addMessage(`FilmsDisplayer.askFilmCreation said: Film created with id=${film.id}`)),
       catchError(error => { 
         this._manageMessages.addMessage(`ERROR FilmsDisplayer.askFilmCreation: ${error}`)
         return of(film as Film)
@@ -37,15 +37,15 @@ export class FilmsDisplayer implements PDisplayFilms {
     )
   }
   
-  askFilmDeletion(film: Film): Observable<void> {
-    return this._manageFilms.deleteFilm(film.id).pipe(
-      tap(filmId => this._manageMessages.addMessage(`FilmsDisplayer.askFilmDeletion said: film updated with id=${filmId}`)),
+  askFilmDeletion(idFilm: number): Observable<void> {
+    return confirm("Are you sure?") ? this._manageFilms.deleteFilm(idFilm).pipe(
+      tap(filmId => this._manageMessages.addMessage(`FilmsDisplayer.askFilmDeletion said: Film deleted with id=${filmId}`)),
       catchError(error => { 
         this._manageMessages.addMessage(`ERROR FilmsDisplayer.askFilmDeletion: ${error}`)
         return of({} as Film)
       }),
       map(deletedFilmId => {this.films = this.films.filter(f => f.id !== deletedFilmId)})
-    )
+    ) : of();
   }
 
 }

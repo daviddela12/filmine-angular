@@ -30,7 +30,7 @@ export class FilmDetailsDisplayer implements PDisplayFilmDetail {
     }
     const updatedFilm = {id: this.film.id, name: newFilm.name, description: newFilm.description};
     return this._manageFilms.updateFilm(updatedFilm).pipe(
-        tap(_ => this._manageMessages.addMessage(`updated film id=${this.film ? this.film.id : 0}`)),
+        tap(_ => this._manageMessages.addMessage(`Film updated successfully with id=${this.film ? this.film.id : 0}`)),
         catchError(error => { 
           this._manageMessages.addMessage(`ERROR FilmDetailsDisplayer.askFilmChange: ${error}`)
           return of(this.film as Film)

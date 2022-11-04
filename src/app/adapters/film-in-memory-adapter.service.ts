@@ -29,8 +29,8 @@ export class FilmInMemoryAdapterService implements PManageFilms {
       catchError(this.handleHttpError())
     );
   }
-  addFilm(hero: Film): Observable<Film> {
-    return this.http.post<Film>(this.filmsUrl, hero, this.httpOptions).pipe(
+  addFilm(film: Film): Observable<Film> {
+    return this.http.post<Film>(this.filmsUrl, film, this.httpOptions).pipe(
       catchError(this.handleHttpError())
     );
   }
