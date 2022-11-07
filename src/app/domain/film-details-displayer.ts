@@ -15,7 +15,7 @@ export class FilmDetailsDisplayer implements PDisplayFilmDetail {
   
   askFilmDetail(id: number): Observable<void> {
     return this._manageFilms.getFilm(id).pipe(
-      tap(_ => this._manageMessages.addMessage(`fethed film id=${id}`)),
+      tap(_ => this._manageMessages.addMessage(`Film fetched with id=${id}`)),
       catchError(error => { 
         this._manageMessages.addMessage(`ERROR FilmDetailsDisplayer.askFilmDetail: ${error}`)
         return of({} as Film)
