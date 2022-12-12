@@ -1,5 +1,5 @@
 import { Observable } from "rxjs"
-import { Film } from "../domain/models/film"
+import { Film } from "../models/film"
 
 export default interface PDisplayFilmDetail {
 

@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import PDisplayFilms from 'src/app/ports/p-display-films';
+import PDisplayFilms from 'src/app/domain/ports/p-display-films';
 
 @Component({
   selector: 'app-films-list',

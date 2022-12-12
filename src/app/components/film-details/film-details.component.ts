@@ -3,8 +3,8 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Film } from 'src/app/domain/models/film';
 import { Location } from '@angular/common';
-import PDisplayFilmDetail from 'src/app/ports/p-display-film-details';
-import PDisplayFilms from 'src/app/ports/p-display-films';
+import PDisplayFilmDetail from 'src/app/domain/ports/p-display-film-details';
+import PDisplayFilms from 'src/app/domain/ports/p-display-films';
 
 @Component({
   selector: 'app-film-details',

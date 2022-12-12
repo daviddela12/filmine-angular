@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import PManageMessages from '../ports/p-manage-messages';
+import PManageMessages from '../domain/ports/p-manage-messages';
 
 @Injectable({
   providedIn: 'root'

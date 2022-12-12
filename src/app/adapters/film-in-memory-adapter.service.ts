@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, map, Observable } from 'rxjs';
 import { Film } from '../domain/models/film';
-import PManageFilms from '../ports/p-manage-films';
+import PManageFilms from '../domain/ports/p-manage-films';
 
 @Injectable({
   providedIn: 'root'
