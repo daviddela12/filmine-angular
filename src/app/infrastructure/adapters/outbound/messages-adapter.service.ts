@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import PManageMessages from '../domain/ports/p-manage-messages';
+import PManageMessages from 'src/app/domain/ports/outbound/p-manage-messages';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +9,7 @@ export class MessagesAdapterService implements PManageMessages {
   messages: string[] = [];
 
   constructor() { }
-  
+
   addMessage(message: string): void {
     this.messages.push(message);
   }

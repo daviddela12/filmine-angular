@@ -6,15 +6,15 @@ import { AppComponent } from './app.component';
 import { FilmsListComponent } from './films-list/films-list.component';
 import { FilmDetailsComponent } from './film-details/film-details.component';
 import { MessagesComponent } from './messages/messages.component';
-import { FilmsDisplayer } from '../domain/films-displayer';
-import { FilmInMemoryAdapterService } from '../adapters/film-in-memory-adapter.service';
-import { MessagesAdapterService } from '../adapters/messages-adapter.service';
+import { FilmsDisplayer } from 'src/app/infrastructure/adapters/inbound/films-displayer';
+import { FilmInMemoryAdapterService } from 'src/app/infrastructure/adapters/outbound/film-in-memory-adapter.service';
+import { MessagesAdapterService } from 'src/app/infrastructure/adapters/outbound/messages-adapter.service';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryDataService } from '../adapters/in-memory-data-service.service';
-import { FilmDetailsDisplayer } from '../domain/film-details-displayer';
+import { InMemoryDataService } from 'src/app/infrastructure/adapters/outbound/in-memory-data-service.service';
+import { FilmDetailsDisplayer } from 'src/app/infrastructure/adapters/inbound/film-details-displayer';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MessagesDisplayer } from '../domain/messages-displayer';
+import { MessagesDisplayer } from 'src/app/infrastructure/adapters/inbound/messages-displayer';
 
 @NgModule({
   declarations: [

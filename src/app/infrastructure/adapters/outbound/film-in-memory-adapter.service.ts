@@ -1,8 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, map, Observable } from 'rxjs';
-import { Film } from '../domain/models/film';
-import PManageFilms from '../domain/ports/p-manage-films';
+import { Film } from 'src/app/domain/models/film';
+import PManageFilms from 'src/app/domain/ports/outbound/p-manage-films';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +16,7 @@ export class FilmInMemoryAdapterService implements PManageFilms {
   };
 
   constructor(private http: HttpClient) { }
-  
+
   getFilms(): Observable<Film[]> {
     return this.http.get<Film[]>(this.filmsUrl).pipe(
       catchError(this.handleHttpError())

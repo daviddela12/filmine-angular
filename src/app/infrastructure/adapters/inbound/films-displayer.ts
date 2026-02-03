@@ -1,13 +1,13 @@
 import { Inject, Injectable } from '@angular/core';
 import { catchError, map, Observable, of, tap } from 'rxjs';
-import PDisplayFilms from './ports/p-display-films';
-import PManageFilms from './ports/p-manage-films';
-import PManageMessages from './ports/p-manage-messages';
-import { Film } from './models/film';
+import PDisplayFilms from 'src/app/domain/ports/inbound/p-display-films';
+import PManageFilms from 'src/app/domain/ports/outbound/p-manage-films';
+import PManageMessages from 'src/app/domain/ports/outbound/p-manage-messages';
+import { Film } from 'src/app/domain/models/film';
 
 @Injectable()
 export class FilmsDisplayer implements PDisplayFilms {
-  
+
   films: Film[] = [];
 
   constructor(@Inject("PManageFilms") private _manageFilms: PManageFilms,
@@ -16,7 +16,7 @@ export class FilmsDisplayer implements PDisplayFilms {
   askFilmsList(): Observable<void> {
     return this._manageFilms.getFilms().pipe(
       tap(_ => this._manageMessages.addMessage("FilmsDisplayer.askFilmsList said: Films fetched")),
-      catchError(error => { 
+      catchError(error => {
         this._manageMessages.addMessage(`ERROR FilmsDisplayer.askFilmsList: ${error}`)
         return of([])
       }),
@@ -27,7 +27,7 @@ export class FilmsDisplayer implements PDisplayFilms {
   askFilmCreation(film: Film): Observable<void> {
     return this._manageFilms.addFilm(film).pipe(
       tap(film => this._manageMessages.addMessage(`FilmsDisplayer.askFilmCreation said: Film created with id=${film.id}`)),
-      catchError(error => { 
+      catchError(error => {
         this._manageMessages.addMessage(`ERROR FilmsDisplayer.askFilmCreation: ${error}`)
         return of(film as Film)
       }),
@@ -36,11 +36,11 @@ export class FilmsDisplayer implements PDisplayFilms {
       })
     )
   }
-  
+
   askFilmDeletion(idFilm: number): Observable<void> {
     return confirm("Are you sure?") ? this._manageFilms.deleteFilm(idFilm).pipe(
       tap(filmId => this._manageMessages.addMessage(`FilmsDisplayer.askFilmDeletion said: Film deleted with id=${filmId}`)),
-      catchError(error => { 
+      catchError(error => {
         this._manageMessages.addMessage(`ERROR FilmsDisplayer.askFilmDeletion: ${error}`)
         return of({} as Film)
       }),

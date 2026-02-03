@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@angular/core';
-import PDisplayMessages from './ports/p-display-messages';
-import PManageMessages from './ports/p-manage-messages';
+import PDisplayMessages from 'src/app/domain/ports/inbound/p-display-messages';
+import PManageMessages from 'src/app/domain/ports/outbound/p-manage-messages';
 
 @Injectable()
 export class MessagesDisplayer implements PDisplayMessages {
@@ -10,7 +10,7 @@ export class MessagesDisplayer implements PDisplayMessages {
   constructor( @Inject('PManageMessages') private _manageMessages: PManageMessages) {
     this.messages = this._manageMessages.messages;
    }
- 
+
   askMessagesClear(): void {
     this._manageMessages.clearMessages();
     this.messages = this._manageMessages.messages;
