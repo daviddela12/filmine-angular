@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@angular/core';
-import PDisplayMessages from 'src/app/domain/ports/inbound/p-display-messages';
-import PManageMessages from 'src/app/domain/ports/outbound/p-manage-messages';
+import PDisplayMessages from '../../../domain/ports/inbound/p-display-messages';
+import PManageMessages from '../../../domain/ports/outbound/p-manage-messages';
 
 @Injectable()
 export class MessagesDisplayer implements PDisplayMessages {

@@ -1,9 +1,9 @@
 import { Inject, Injectable } from '@angular/core';
 import { catchError, map, Observable, of, tap } from 'rxjs';
-import PDisplayFilms from 'src/app/domain/ports/inbound/p-display-films';
-import PManageFilms from 'src/app/domain/ports/outbound/p-manage-films';
-import PManageMessages from 'src/app/domain/ports/outbound/p-manage-messages';
-import { Film } from 'src/app/domain/models/film';
+import PDisplayFilms from '../../../domain/ports/inbound/p-display-films';
+import PManageFilms from '../../../domain/ports/outbound/p-manage-films';
+import PManageMessages from '../../../domain/ports/outbound/p-manage-messages';
+import { Film } from '../../../domain/models/film';
 
 @Injectable()
 export class FilmsDisplayer implements PDisplayFilms {
