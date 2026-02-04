@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import PDisplayMessages from '../../domain/ports/inbound/p-display-messages';
+import PDisplayMessages from '../../application/ports/inbound/p-display-messages';
 
 @Component({
   selector: 'app-messages',
