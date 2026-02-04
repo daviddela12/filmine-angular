@@ -10,3 +10,8 @@ Easily way to understand the ports, adapters and domain inside a real problem.
 - **application**: Implementation of the use cases (Inbound Ports) defined in the domain layer.
 - **domain**: Use Cases in my application defined on ports (interfaces or contracts to be implemented by inbound adapters (in application) and outbound adapters (in infrastructure)).
 - **ui**: External application with our frontend views. Agnostic to the domain and application layers. It can use Models from Domain BUT better to use DTOs defined in the application layer.
+
+
+
+  ![Port & Adapters architecture](src/assets/port-adapters-architecture.webp)
+source: https://miro.medium.com/v2/resize:fit:2000/format:webp/1*90nuqeg3RNdK9S-KhFlIag.png
